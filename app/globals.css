@@ -191,13 +191,50 @@ main { position: relative; z-index: 1; }
 .palm.p1 { left: 8%; }
 .palm.p2 { right: 8%; transform: scaleX(-1) rotate(-8deg); }
 
+.cityGlow {
+  position: absolute;
+  left: 8%; right: 8%; bottom: 12%;
+  height: 28%;
+  background: radial-gradient(ellipse at center, rgba(95, 234, 252, 0.18), rgba(255, 94, 167, 0.08) 42%, transparent 70%);
+  filter: blur(18px);
+  z-index: 0;
+}
+
+.citySilhouette {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 220px;
+  background: linear-gradient(180deg, rgba(12,16,22,0), rgba(5,8,12,0.72)),
+    linear-gradient(90deg,
+      rgba(255,255,255,0.04) 0 70px,
+      transparent 70px 110px,
+      rgba(255,255,255,0.04) 110px 180px,
+      transparent 180px 230px,
+      rgba(255,255,255,0.04) 230px 290px,
+      transparent 290px 340px,
+      rgba(255,255,255,0.04) 340px 430px,
+      transparent 430px 500px,
+      rgba(255,255,255,0.04) 500px 600px,
+      transparent 600px 100%
+    );
+  clip-path: polygon(0% 100%, 0% 58%, 6% 58%, 6% 38%, 12% 38%, 12% 60%, 18% 60%, 18% 33%, 24% 33%, 24% 62%, 31% 62%, 31% 24%, 40% 24%, 40% 60%, 49% 60%, 49% 18%, 58% 18%, 58% 66%, 66% 66%, 66% 44%, 74% 44%, 74% 27%, 81% 27%, 81% 62%, 88% 62%, 88% 48%, 100% 48%, 100% 100%);
+  opacity: 0.9;
+  z-index: 0;
+}
+
 .heroCopy { position: relative; z-index: 2; max-width: 620px; }
 .eyebrow,.kicker,.sectionNo,.mission p,.contactLine small,.cardTop,.cardRole,.quoteMark {
   font: 10px 'DM Mono', monospace; letter-spacing: 2px; text-transform: uppercase;
 }
 .eyebrow,.kicker,.sectionNo { color: var(--cyan); opacity: 0.9; }
+.titleWrap { display: grid; gap: 10px; }
+.cityTag {
+  display: inline-block; width: fit-content; padding: 7px 12px; border-radius: 999px;
+  border: 1px solid rgba(255, 94, 167, 0.4); background: rgba(255, 94, 167, 0.08); color: var(--pink-2);
+  font: 10px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.18em;
+}
 .heroCopy h1 {
-  margin: 18px 0 12px; font-size: clamp(4.5rem, 8vw, 9.2rem); line-height: 0.77; letter-spacing: -0.08em; font-weight: 900;
+  margin: 0; font-size: clamp(4.5rem, 8vw, 9.2rem); line-height: 0.77; letter-spacing: -0.08em; font-weight: 900;
   text-transform: uppercase;
   text-shadow: 0 0 22px rgba(255, 94, 167, 0.22);
   animation: titleFloat 5s ease-in-out infinite;
@@ -234,13 +271,13 @@ main { position: relative; z-index: 1; }
   background: linear-gradient(180deg, rgba(16, 20, 30, 0.82), rgba(9, 12, 18, 0.94));
   border: 1px solid rgba(95, 234, 252, 0.22);
   border-radius: 26px;
-  box-shadow: 0 16px 46px rgba(0,0,0,0.55), inset 0 0 40px rgba(95, 234, 252, 0.04);
+  box-shadow: 0 16px 46px rgba(0,0,0,0.55), inset 0 0 40px rgba(95, 234, 252, 0.04), 0 0 30px rgba(255,94,167,0.18);
   animation: floatCard 7s ease-in-out infinite;
 }
 .cardTop { display: flex; justify-content: space-between; color: var(--gold); opacity: 0.95; }
 .avatar {
   position: relative; margin: 18px auto 16px; width: 170px; height: 170px; border-radius: 50%; overflow: hidden;
-  border: 3px solid rgba(255, 94, 167, 0.5); box-shadow: 0 0 30px rgba(255, 94, 167, 0.25); background: rgba(255,255,255,0.04);
+  border: 3px solid rgba(255, 94, 167, 0.5); box-shadow: 0 0 30px rgba(255, 94, 167, 0.25), 0 0 60px rgba(95,234,252,0.12); background: rgba(255,255,255,0.04);
   animation: hoverAvatar 6s ease-in-out infinite;
 }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
