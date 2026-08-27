@@ -52,6 +52,55 @@ button { cursor: pointer; color: inherit; }
 img { max-width: 100%; display: block; }
 main { position: relative; z-index: 1; }
 
+.introOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at center, rgba(255, 94, 167, 0.16), rgba(6, 8, 12, 0.96) 42%, rgba(3, 4, 7, 1));
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+.introOverlay.show { opacity: 1; visibility: visible; }
+.introOverlay.hide { opacity: 0; visibility: hidden; }
+.introScan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.05) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  animation: scanlineMove 1.5s linear infinite;
+}
+.introText {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  text-align: center;
+  z-index: 1;
+  animation: introText 1.5s ease both;
+}
+.introText span,
+.introText em {
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(247, 241, 232, 0.82);
+}
+.introText strong {
+  font-size: clamp(3rem, 8vw, 7rem);
+  letter-spacing: -0.08em;
+  color: var(--paper);
+  text-transform: uppercase;
+  text-shadow: 0 0 24px rgba(255, 94, 167, 0.45);
+}
+.introText em {
+  color: var(--cyan);
+}
+
 .grain {
   position: fixed;
   inset: 0;
@@ -301,6 +350,15 @@ footer button { background: none; border: 0; display: inline-flex; align-items: 
 @keyframes scanDrift {
   0% { background-position: 0 0, 0 0; }
   100% { background-position: 120px 0, 0 120px; }
+}
+@keyframes scanlineMove {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+@keyframes introText {
+  0% { opacity: 0; transform: scale(0.96) translateY(18px); }
+  50% { opacity: 1; }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 @media (max-width: 980px) {

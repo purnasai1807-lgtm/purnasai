@@ -16,10 +16,19 @@ const socialLinks=[
 ]
 
 export default function Home(){
- const [menu,setMenu]=useState(false),[time,setTime]=useState(''),[sound,setSound]=useState(false),[active,setActive]=useState(null)
+ const [menu,setMenu]=useState(false),[time,setTime]=useState(''),[sound,setSound]=useState(false),[active,setActive]=useState(null),[intro,setIntro]=useState(true)
  useEffect(()=>{const tick=()=>setTime(new Intl.DateTimeFormat('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date()));tick();const i=setInterval(tick,1000);return()=>clearInterval(i)},[])
+ useEffect(()=>{const t=setTimeout(()=>setIntro(false),1500); return ()=>clearTimeout(t)},[])
  const go=id=>{setMenu(false);document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
- return <main>
+ return <main className={intro?'introMode':''}>
+  <div className={`introOverlay ${intro ? 'show' : 'hide'}`}>
+   <div className="introScan"/>
+   <div className="introText">
+    <span>VICE CITY // ENTRY</span>
+    <strong>PURNA SAI</strong>
+    <em>HYDERABAD • DIGITAL OPERATIVE</em>
+   </div>
+  </div>
   <div className="grain"/>
   <header className="hud"><button className="brand" onClick={()=>go('home')}><span>PS</span><small>PORTFOLIO // 2026</small></button><nav className={menu?'open':''}>{['home','about','missions','skills','contact'].map(x=><button key={x} onClick={()=>go(x)}>{x}</button>)}</nav><div className="hudRight"><span className="clock">{time}</span><button className="sound" onClick={()=>setSound(!sound)}>{sound?'SOUND ON':'SOUND OFF'}</button><button className="hamb" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></div></header>
   <section id="home" className="hero">
